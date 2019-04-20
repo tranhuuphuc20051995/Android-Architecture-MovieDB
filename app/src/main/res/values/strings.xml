@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Movie Trailer</string>
+    <string name="loading">Loading...</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="more">More</string>
+    <string name="coming_soon">Coming soon...</string>
+</resources>

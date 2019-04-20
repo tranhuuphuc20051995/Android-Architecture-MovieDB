@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fl_more"
+        android:layout_width="140dp"
+        android:layout_height="238dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/color_yellow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/more"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </FrameLayout>
+</layout>

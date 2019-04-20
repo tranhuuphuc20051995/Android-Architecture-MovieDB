@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.thphuc.androidarchitecture"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+    dataBinding {
+        enabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+        }
+        release {
+            buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+
+    implementation "com.google.dagger:dagger:2.22.1"
+    implementation "com.google.dagger:dagger-android:2.22.1"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.22.1"
+    implementation "com.google.dagger:dagger-android-support:2.22.1"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.22.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha01'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation 'android.arch.navigation:navigation-runtime:1.0.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
