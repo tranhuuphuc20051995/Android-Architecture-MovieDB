@@ -24,6 +24,7 @@ public class MoreMovieAdapter extends PagedListAdapter<Movie, MoreMovieViewHolde
     @Override
     public MoreMovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_movie_style_one, parent, false);
+        binding.getRoot().setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return new MoreMovieViewHolder(binding);
     }
 

@@ -15,6 +15,7 @@ public class MoreMovieViewHolder extends RecyclerView.ViewHolder {
     public MoreMovieViewHolder(ViewDataBinding view) {
         super(view.getRoot());
         itemMovieStyleOneBinding = (ItemMovieStyleOneBinding) view;
+        itemMovieStyleOneBinding.tvName.setMaxLines(10);
     }
 
     public void bindData(Movie item) {

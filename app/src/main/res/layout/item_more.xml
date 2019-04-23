@@ -5,8 +5,6 @@
         android:id="@+id/fl_more"
         android:layout_width="140dp"
         android:layout_height="238dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:background="@color/color_yellow">
 
         <TextView

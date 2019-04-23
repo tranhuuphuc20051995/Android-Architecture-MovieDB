@@ -14,6 +14,7 @@ import com.thphuc.androidarchitecture.module_app.base.BaseDatabindingFragment;
 import com.thphuc.androidarchitecture.module_app.commons.ViewModelFactory;
 import com.thphuc.androidarchitecture.module_app.ui.movies.adapters.MoreMovieAdapter;
 import com.thphuc.androidarchitecture.module_app.ui.movies.viewmodels.MoreMovieViewModel;
+import com.thphuc.androidarchitecture.module_commons.GridDividerItemDecoration;
 
 import javax.inject.Inject;
 
@@ -33,12 +34,14 @@ public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovie
     private int type;
     private MoreMovieAdapter adapter;
 
-
     @Override
     protected void init(@Nullable View view) {
+        viewDataBinding.toolbar.setTitle(R.string.more_movie);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MoreMovieViewModel.class);
         adapter = new MoreMovieAdapter();
+        viewDataBinding.rvMore.addItemDecoration(new GridDividerItemDecoration(20));
         viewDataBinding.rvMore.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        viewDataBinding.rvMore.setHasFixedSize(false);
         viewDataBinding.rvMore.setAdapter(adapter);
         if (getArguments() != null) {
             type = MoreMovieFragmentArgs.fromBundle(getArguments()).getType();

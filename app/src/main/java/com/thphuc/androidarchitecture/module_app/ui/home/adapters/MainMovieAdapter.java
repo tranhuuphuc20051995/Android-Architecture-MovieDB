@@ -12,6 +12,7 @@ import com.thphuc.androidarchitecture.R;
 import com.thphuc.androidarchitecture.databinding.ItemMainMovieBinding;
 import com.thphuc.androidarchitecture.databinding.ItemMainSliderBinding;
 import com.thphuc.androidarchitecture.module_app.commons.Constant;
+import com.thphuc.androidarchitecture.module_commons.LinearDividerItemDecoration;
 import com.thphuc.androidarchitecture.module_commons.base.AbsBindingAdapter;
 import com.thphuc.androidarchitecture.module_data.models.Movie;
 
@@ -55,6 +56,7 @@ public class MainMovieAdapter extends AbsBindingAdapter<ViewDataBinding> {
     @Override
     public void updateBinding(ViewDataBinding binding, int position) {
         Context context = binding.getRoot().getContext();
+        LinearDividerItemDecoration dividerItemDecoration = new LinearDividerItemDecoration(android.R.color.white, Constant.LINEAR_DIVIDER_ITEM_DECORATION);
         if (position == TYPE_SLIDER) {
             ItemMainSliderBinding itemBind = (ItemMainSliderBinding) binding;
             itemBind.pageIndicator.setCount(listSlider.size());
@@ -71,21 +73,25 @@ public class MainMovieAdapter extends AbsBindingAdapter<ViewDataBinding> {
         } else if (position == TYPE_NOW) {
             ItemMainMovieBinding itemBind = (ItemMainMovieBinding) binding;
             itemBind.setTitle("Now Playing");
+            itemBind.rvContent.addItemDecoration(dividerItemDecoration);
             itemBind.rvContent.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
             itemBind.rvContent.setAdapter(new MainCommonAdapter(MainCommonAdapter.TYPE_NOW, listNow, listener, Constant.TYPE_NOW));
         } else if (position == TYPE_POPULAR) {
             ItemMainMovieBinding itemBind = (ItemMainMovieBinding) binding;
             itemBind.setTitle("Popular");
+            itemBind.rvContent.addItemDecoration(dividerItemDecoration);
             itemBind.rvContent.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
             itemBind.rvContent.setAdapter(new MainCommonAdapter(MainCommonAdapter.TYPE_COMMON, listPopular, listener, Constant.TYPE_POPULAR));
         } else if (position == TYPE_TOP) {
             ItemMainMovieBinding itemBind = (ItemMainMovieBinding) binding;
             itemBind.setTitle("Top Rated");
+            itemBind.rvContent.addItemDecoration(dividerItemDecoration);
             itemBind.rvContent.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
             itemBind.rvContent.setAdapter(new MainCommonAdapter(MainCommonAdapter.TYPE_COMMON, listTopRated, listener, Constant.TYPE_TOP_RATE));
         } else {
             ItemMainMovieBinding itemBind = (ItemMainMovieBinding) binding;
             itemBind.setTitle("Upcoming");
+            itemBind.rvContent.addItemDecoration(dividerItemDecoration);
             itemBind.rvContent.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
             itemBind.rvContent.setAdapter(new MainCommonAdapter(MainCommonAdapter.TYPE_COMMON, listUpcoming, listener, Constant.TYPE_UPCOMING));
         }
