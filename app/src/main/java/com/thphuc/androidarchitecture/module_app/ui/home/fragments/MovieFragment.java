@@ -14,6 +14,7 @@ import com.thphuc.androidarchitecture.databinding.FragmentMovieBinding;
 import com.thphuc.androidarchitecture.module_app.base.BaseDatabindingFragment;
 import com.thphuc.androidarchitecture.module_app.commons.ViewModelFactory;
 import com.thphuc.androidarchitecture.module_app.ui.home.adapters.MainMovieAdapter;
+import com.thphuc.androidarchitecture.module_app.ui.home.listeners.MainFragmentListener;
 import com.thphuc.androidarchitecture.module_app.ui.home.viewmodels.MovieViewModel;
 import com.thphuc.androidarchitecture.module_data.models.Movie;
 
@@ -39,9 +40,13 @@ public class MovieFragment extends BaseDatabindingFragment<FragmentMovieBinding>
     ViewModelFactory viewModelFactory;
     MovieViewModel viewModel;
     MainMovieAdapter adapter;
+    MainFragmentListener mainFragmentListener;
 
     @Override
     protected void init(@Nullable View view) {
+        if (getParentFragment() instanceof MainFragmentListener) {
+            mainFragmentListener = (MainFragmentListener) getParentFragment();
+        }
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieViewModel.class);
         adapter = new MainMovieAdapter(this);
         viewDataBinding.rvMovies.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -104,11 +109,11 @@ public class MovieFragment extends BaseDatabindingFragment<FragmentMovieBinding>
 
     @Override
     public void onItemMovieClick(Movie movie) {
-
+        mainFragmentListener.onItemMovieClick(movie);
     }
 
     @Override
     public void onItemMoreClick(int type) {
-
+        mainFragmentListener.onItemMoreClick(type);
     }
 }

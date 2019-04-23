@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.thphuc.androidarchitecture.module_data.usecases.MovieUseCase;
+import com.thphuc.androidarchitecture.module_data.usecases.TVShowUseCase;
 import com.thphuc.androidarchitecture.module_data.usecases.impl.MovieUseCaseImpl;
+import com.thphuc.androidarchitecture.module_data.usecases.impl.TVShowUseCaseImpl;
 import com.thphuc.androidarchitecture.module_network.di.NetworkModule;
 import com.thphuc.androidarchitecture.module_network.service.MovieService;
+import com.thphuc.androidarchitecture.module_network.service.TVService;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -32,6 +35,11 @@ public class DataModule {
     @Provides
     public MovieUseCase providesMovieUseCase(Gson gson, MovieService movieService) {
         return new MovieUseCaseImpl(gson, movieService);
+    }
+
+    @Provides
+    public TVShowUseCase providesTVShowUseCase(Gson gson, TVService tvService) {
+        return new TVShowUseCaseImpl(gson, tvService);
     }
 
 }

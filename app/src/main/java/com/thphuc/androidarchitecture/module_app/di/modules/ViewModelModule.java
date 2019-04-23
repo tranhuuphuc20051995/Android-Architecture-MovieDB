@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.thphuc.androidarchitecture.module_app.commons.ViewModelFactory;
 import com.thphuc.androidarchitecture.module_app.di.utils.ViewModelKey;
 import com.thphuc.androidarchitecture.module_app.ui.home.viewmodels.MovieViewModel;
+import com.thphuc.androidarchitecture.module_app.ui.movies.viewmodels.MoreMovieViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -21,6 +22,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieViewModel.class)
     abstract ViewModel bindMovieViewModel(MovieViewModel movieViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MoreMovieViewModel.class)
+    abstract ViewModel bindMoreMovieViewModel(MoreMovieViewModel moreMovieViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

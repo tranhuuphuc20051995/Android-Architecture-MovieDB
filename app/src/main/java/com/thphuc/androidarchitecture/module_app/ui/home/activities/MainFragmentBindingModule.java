@@ -3,6 +3,9 @@ package com.thphuc.androidarchitecture.module_app.ui.home.activities;
 import com.thphuc.androidarchitecture.module_app.ui.home.fragments.MainFragment;
 import com.thphuc.androidarchitecture.module_app.ui.home.fragments.MovieFragment;
 import com.thphuc.androidarchitecture.module_app.ui.home.fragments.TVShowFragment;
+import com.thphuc.androidarchitecture.module_app.ui.movies.fragments.MoreMovieFragment;
+import com.thphuc.androidarchitecture.module_app.ui.movies.fragments.MovieDetailFragment;
+import com.thphuc.androidarchitecture.module_app.ui.movies.fragments.PlayMovieFragment;
 import com.thphuc.androidarchitecture.module_app.ui.splash.SplashFragment;
 import com.thphuc.androidarchitecture.module_app.ui.walkthrought.fragments.WalkThroughtFragment;
 
@@ -29,4 +32,13 @@ public abstract class MainFragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract TVShowFragment provideTVShowFragment();
+
+    @ContributesAndroidInjector
+    abstract MoreMovieFragment provideMoreMovieFragment();
+
+    @ContributesAndroidInjector
+    abstract MovieDetailFragment provideMovieDetailFragment();
+
+    @ContributesAndroidInjector
+    abstract PlayMovieFragment providePlayMovieFragment();
 }

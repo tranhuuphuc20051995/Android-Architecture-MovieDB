@@ -1,6 +1,9 @@
 package com.thphuc.androidarchitecture.module_data.models;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -289,4 +292,25 @@ public class Movie extends BaseObservable implements Serializable, Comparable {
         }
         return 1;
     }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        Movie movie = (Movie) obj;
+        return movie.id == this.id;
+    }
+
+    public static DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 }

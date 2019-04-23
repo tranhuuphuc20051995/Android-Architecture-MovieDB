@@ -31,7 +31,22 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.thphuc.androidarchitecture.module_app.ui.home.fragments.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_moreMovieFragment"
+            app:destination="@id/moreMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/walkThroughtFragment"
         android:name="com.thphuc.androidarchitecture.module_app.ui.walkthrought.fragments.WalkThroughtFragment"
@@ -47,4 +62,38 @@
             app:popUpTo="@id/walkThroughtFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/moreMovieFragment"
+        android:name="com.thphuc.androidarchitecture.module_app.ui.movies.fragments.MoreMovieFragment"
+        android:label="MoreMovieFragment">
+        <action
+            android:id="@+id/action_moreMovieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.thphuc.androidarchitecture.module_app.ui.movies.fragments.MovieDetailFragment"
+        android:label="MovieDetailFragment">
+        <action
+            android:id="@+id/action_movieDetailFragment_to_playMovieFragment"
+            app:destination="@id/playMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="movie"
+            app:argType="com.thphuc.androidarchitecture.module_data.models.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/playMovieFragment"
+        android:name="com.thphuc.androidarchitecture.module_app.ui.movies.fragments.PlayMovieFragment"
+        android:label="PlayMovieFragment" />
 </navigation>
