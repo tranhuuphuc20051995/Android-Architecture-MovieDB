@@ -26,14 +26,12 @@ public class SplashFragment extends BaseDatabindingFragment<FragmentSplashBindin
 
     @Override
     protected void init(@Nullable View view) {
-
     }
 
     @Override
     protected void screenResume() {
-        disposableManager.add(Observable.just(true).delay(3000, TimeUnit.MILLISECONDS).subscribe(v -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_walkThroughtFragment);
-        }));
+        disposableManager.add(Observable.just(true)
+                .delay(3000, TimeUnit.MILLISECONDS).subscribe(v -> NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_walkThroughtFragment)));
     }
 
     @Override

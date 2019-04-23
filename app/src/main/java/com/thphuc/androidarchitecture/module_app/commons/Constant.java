@@ -10,5 +10,5 @@ public class Constant {
     public static final int TYPE_UPCOMING = 4;
     public static final int TYPE_RECOMMENDATIONS = 5;
     public static final int TYPE_SIMILAR = 6;
-
+    public static final int LINEAR_DIVIDER_ITEM_DECORATION = 20;
 }
