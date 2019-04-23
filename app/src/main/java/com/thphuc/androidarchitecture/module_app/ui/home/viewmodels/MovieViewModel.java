@@ -75,7 +75,6 @@ public class MovieViewModel extends BaseViewModel {
                 }));
     }
 
-
     public Observable<BaseResponse<List<Movie>>> getUpcoming(String apiKey, int page) {
         return movieUseCase.getUpcoming(apiKey, page)
                 .observeOn(AndroidSchedulers.mainThread())

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.thphuc.androidarchitecture.R;
 import com.thphuc.androidarchitecture.databinding.FragmentTvShowBinding;
 import com.thphuc.androidarchitecture.module_app.base.BaseDatabindingFragment;
+import com.thphuc.androidarchitecture.module_app.ui.home.listeners.MainFragmentListener;
 
 /**
  * Created by TranHuuPhuc on 3/25/19.
@@ -21,6 +22,8 @@ public class TVShowFragment extends BaseDatabindingFragment<FragmentTvShowBindin
         return fragment;
     }
 
+    MainFragmentListener mainFragmentListener;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_tv_show;
@@ -28,7 +31,9 @@ public class TVShowFragment extends BaseDatabindingFragment<FragmentTvShowBindin
 
     @Override
     protected void init(@Nullable View view) {
-
+        if (getParentFragment() instanceof MainFragmentListener) {
+            mainFragmentListener = (MainFragmentListener) getParentFragment();
+        }
     }
 
     @Override
