@@ -1,6 +1,5 @@
 package com.thphuc.androidarchitecture.module_app.ui.movies.adapters.viewholders;
 
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thphuc.androidarchitecture.databinding.ItemMovieStyleOneBinding;
@@ -12,9 +11,9 @@ import com.thphuc.androidarchitecture.module_data.models.Movie;
 public class MoreMovieViewHolder extends RecyclerView.ViewHolder {
     private ItemMovieStyleOneBinding itemMovieStyleOneBinding;
 
-    public MoreMovieViewHolder(ViewDataBinding view) {
+    public MoreMovieViewHolder(ItemMovieStyleOneBinding view) {
         super(view.getRoot());
-        itemMovieStyleOneBinding = (ItemMovieStyleOneBinding) view;
+        itemMovieStyleOneBinding = view;
         itemMovieStyleOneBinding.tvName.setMaxLines(10);
     }
 
