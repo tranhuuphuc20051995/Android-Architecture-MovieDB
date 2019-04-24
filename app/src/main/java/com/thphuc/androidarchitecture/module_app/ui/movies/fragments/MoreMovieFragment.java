@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.thphuc.androidarchitecture.R;
 import com.thphuc.androidarchitecture.databinding.FragmentMoreMovieBinding;
 import com.thphuc.androidarchitecture.module_app.base.BaseDatabindingFragment;
+import com.thphuc.androidarchitecture.module_app.commons.ItemNetworkStateListener;
 import com.thphuc.androidarchitecture.module_app.commons.ViewModelFactory;
 import com.thphuc.androidarchitecture.module_app.ui.movies.adapters.MoreMovieAdapter;
 import com.thphuc.androidarchitecture.module_app.ui.movies.viewmodels.MoreMovieViewModel;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
 /**
  * Created by TranHuuPhuc on 2019-04-22.
  */
-public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovieBinding> {
+public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovieBinding> implements ItemNetworkStateListener {
 
     @Override
     protected int getLayoutId() {
@@ -38,7 +39,7 @@ public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovie
     protected void init(@Nullable View view) {
         viewDataBinding.toolbar.setTitle(R.string.more_movie);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MoreMovieViewModel.class);
-        adapter = new MoreMovieAdapter();
+        adapter = new MoreMovieAdapter(this);
         viewDataBinding.rvMore.addItemDecoration(new GridDividerItemDecoration(20));
         viewDataBinding.rvMore.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         viewDataBinding.rvMore.setHasFixedSize(false);
@@ -47,7 +48,38 @@ public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovie
             type = MoreMovieFragmentArgs.fromBundle(getArguments()).getType();
             getData();
         }
-        viewModel.getListMovies().observe(this, movies -> adapter.submitList(movies));
+        initObserveViewModel();
+    }
+
+    private void initObserveViewModel() {
+        viewModel.getListMovies().observe(this, movies -> {
+            viewDataBinding.rvMore.setVisibility(View.VISIBLE);
+            viewDataBinding.tvError.setVisibility(View.GONE);
+            viewDataBinding.pbLoading.setVisibility(View.GONE);
+            adapter.submitList(movies);
+        });
+        viewModel.getNetworkState().observe(this, networkState -> adapter.setNetworkState(networkState));
+        viewModel.getError().observe(this, isError -> {
+            if (isError != null) {
+                if (isError) {
+                    viewDataBinding.tvError.setVisibility(View.VISIBLE);
+                    viewDataBinding.rvMore.setVisibility(View.GONE);
+                    viewDataBinding.tvError.setText("An Error Occurred While Loading Data!");
+                } else {
+                    viewDataBinding.tvError.setVisibility(View.GONE);
+                    viewDataBinding.tvError.setText(null);
+                }
+            }
+        });
+        viewModel.getLoading().observe(this, isLoading -> {
+            if (isLoading != null) {
+                viewDataBinding.pbLoading.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+                if (isLoading) {
+                    viewDataBinding.tvError.setVisibility(View.GONE);
+                    viewDataBinding.rvMore.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     private void getData() {
@@ -73,5 +105,10 @@ public class MoreMovieFragment extends BaseDatabindingFragment<FragmentMoreMovie
     @Override
     protected void attach(Context context) {
 
+    }
+
+    @Override
+    public void onRetryClick(View v, int adapterPosition) {
+        //Todo reload more
     }
 }

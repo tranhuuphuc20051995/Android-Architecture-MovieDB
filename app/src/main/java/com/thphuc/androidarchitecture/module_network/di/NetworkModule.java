@@ -1,6 +1,7 @@
 package com.thphuc.androidarchitecture.module_network.di;
 
 import android.accounts.AuthenticatorException;
+import android.content.Context;
 
 import com.thphuc.androidarchitecture.BuildConfig;
 import com.thphuc.androidarchitecture.module_network.service.MovieService;
@@ -10,7 +11,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,13 +27,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class NetworkModule {
+    private final static long CACHE_SIZE = 10 * 1024 * 1024;
 
     @Provides
-    OkHttpClient.Builder provideOkHttpClientBuilder() {
+    OkHttpClient.Builder provideOkHttpClientBuilder(Context context) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+//        Cache cache = new Cache(context.getCacheDir(), CACHE_SIZE);
         httpClient.connectTimeout(15, TimeUnit.SECONDS);
         httpClient.readTimeout(15, TimeUnit.SECONDS);
         httpClient.writeTimeout(15, TimeUnit.SECONDS);
+//        httpClient.cache(cache);
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         if (BuildConfig.DEBUG) {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
